@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const process = require('process');
-const { exec } = require('child_process');
-const minimist = require('minimist');
+const fs = require("fs");
+const path = require("path");
+const process = require("process");
+const { exec } = require("child_process");
+const minimist = require("minimist");
 
 async function getPublishedVersion(token, publisher, extensionId) {
   return new Promise((resolve, reject) => {
@@ -24,7 +24,9 @@ async function getPublishedVersion(token, publisher, extensionId) {
       }
 
       try {
-        const [major, minor, patch] = extensionData.versions[0].version.split('.');
+        const [major, minor, patch] = extensionData.versions[0].version.split(
+          "."
+        );
         resolve({
           major: Number(major),
           minor: Number(minor),
@@ -39,7 +41,7 @@ async function getPublishedVersion(token, publisher, extensionId) {
 
 async function getJsonContent(filePath) {
   return new Promise((resolve, reject) => {
-    fs.readFile(filePath, 'utf8', (err, jsonString) => {
+    fs.readFile(filePath, "utf8", (err, jsonString) => {
       if (err) {
         reject(`Error reading file from disk: ${err}`);
         return;
@@ -73,57 +75,83 @@ async function updateJsonContent(filePath, update) {
   console.log(`Updated file: ${filePath}`);
 }
 
-const releaseTypes = new Set(['dev', 'hotfix', 'prod']);
+const releaseTypes = new Set(["dev", "hotfix", "prod"]);
 
 const run = async args => {
-  if (!args.token) throw new Error('Argument --token is missing (Azure DevOps PAT token for VS Marketplace)');
+  if (!args.token)
+    throw new Error(
+      "Argument --token is missing (Azure DevOps PAT token for VS Marketplace)"
+    );
 
-  if (!args['release-type'] || !releaseTypes.has(args['release-type']))
-    throw new Error('Argument --release-type is missing (valid values: dev, hotfix, prod)');
+  if (!args["release-type"] || !releaseTypes.has(args["release-type"]))
+    throw new Error(
+      "Argument --release-type is missing (valid values: dev, hotfix, prod)"
+    );
 
-  console.log(`Updating extension information for ${args['release-type']}`);
+  console.log(`Updating extension information for ${args["release-type"]}`);
 
   const settings = {
-    id: 'lighthouse-vsts',
-    name: 'Lighthouse',
-    publisher: 'GSoft',
+    id: "lighthouse-vsts",
+    name: "Lighthouse",
+    publisher: "GSoft",
     version: { major: 1, minor: 0, patch: 0 },
-    galleryFlags: ['Public'],
+    galleryFlags: ["Public"],
     public: true
   };
 
-  const prodVersion = await getPublishedVersion(args.token, settings.publisher, settings.id);
-  console.log('Current production extension version:', JSON.stringify(prodVersion, null, 2));
+  const prodVersion = await getPublishedVersion(
+    args.token,
+    settings.publisher,
+    settings.id
+  );
+  console.log(
+    "Current production extension version:",
+    JSON.stringify(prodVersion, null, 2)
+  );
 
-  switch (args['release-type']) {
-    case 'dev':
-      settings.id += '-dev';
-      settings.name += ' (dev)';
-      settings.publisher = 'gsoft-dev';
-      settings.galleryFlags = ['Preview'];
+  switch (args["release-type"]) {
+    case "dev":
+      settings.id += "-dev";
+      settings.name += " (dev)";
+      settings.publisher = "gsoft-dev";
+      settings.galleryFlags = ["Preview"];
       settings.public = false;
 
-      const devVersion = await getPublishedVersion(args.token, settings.publisher, settings.id);
-      console.log('Current development extension version:', JSON.stringify(devVersion, null, 2));
+      const devVersion = await getPublishedVersion(
+        args.token,
+        settings.publisher,
+        settings.id
+      );
+      console.log(
+        "Current development extension version:",
+        JSON.stringify(devVersion, null, 2)
+      );
 
       settings.version.major = Math.max(prodVersion.major, devVersion.major);
       settings.version.minor = Math.max(prodVersion.minor, devVersion.minor);
-      settings.version.patch = prodVersion.major !== devVersion.major || prodVersion.minor !== devVersion.minor ? 1 : devVersion.patch + 1;
+      settings.version.patch =
+        prodVersion.major !== devVersion.major ||
+        prodVersion.minor !== devVersion.minor
+          ? 1
+          : devVersion.patch + 1;
       break;
-    case 'hotfix':
+    case "hotfix":
       settings.version = prodVersion;
       settings.version.patch++;
       break;
-    case 'prod':
+    case "prod":
       settings.version = prodVersion;
       settings.version.minor++;
       settings.version.patch = 0;
       break;
   }
 
-  console.log('New extension information will be:', JSON.stringify(settings, null, 2));
+  console.log(
+    "New extension information will be:",
+    JSON.stringify(settings, null, 2)
+  );
 
-  const vssExtensionJsonPath = path.resolve(__dirname, 'vss-extension.json');
+  const vssExtensionJsonPath = path.resolve(__dirname, "vss-extension.json");
   await updateJsonContent(vssExtensionJsonPath, content => {
     content.id = settings.id;
     content.version = `${settings.version.major}.${settings.version.minor}.${settings.version.patch}`;
@@ -133,7 +161,7 @@ const run = async args => {
     content.public = settings.public;
   });
 
-  const taskJsonPath = path.resolve(__dirname, 'task/src/task.json');
+  const taskJsonPath = path.resolve(__dirname, "task/src/task.json");
   await updateJsonContent(taskJsonPath, content => {
     content.version = {
       Major: settings.version.major,
@@ -144,13 +172,13 @@ const run = async args => {
 };
 
 const args = minimist(process.argv.slice(2), {
-  string: ['token', 'release-type'],
-  default: { 'release-type': 'dev' }
+  string: ["token", "release-type"],
+  default: { "release-type": "dev" }
 });
 
 run(args).then(
   () => {
-    console.log('Version bump finished');
+    console.log("Version bump finished");
     process.exit(0);
   },
   err => {
