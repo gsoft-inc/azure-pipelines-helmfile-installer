@@ -1,1 +1,6 @@
+PackageOutput
 *.vsix
+node_modules
+task/**/*.js
+.taskkey
+.DS_Store
