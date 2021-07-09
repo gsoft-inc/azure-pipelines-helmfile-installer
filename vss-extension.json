@@ -1,66 +1,62 @@
 {
-    "manifestVersion": 1,
-    "id": "HelmfileInstaller",
-    "name": "Helmfile Installer",
-    "version": "1.0.0",
-    "publisher": "GSoft",
-    "author": "Yohan Belval",
-    "public": true,
-    "galleryFlags": [
-        "Public"
-    ],
-    "targets": [
-        {
-            "id": "Microsoft.VisualStudio.Services"
-        }
-    ],
-    "description": "Installs the helmfile command line tool on the executing host.",
-    "tags": [
-        "Helm",
-        "Build",
-        "Release",
-        "Azure Pipelines",
-        "Visual Studio Extensions"
-    ],
-    "categories": [
-        "Azure Pipelines"
-    ],
-    "icons": {
-        "default": "task/icon.png"
-    },
-    "files": [
-        {
-            "path": "task/dist",
-            "packagePath": "Tasks/HelmfileInstaller/src"
-        },
-        {
-            "path": "task/node_modules",
-            "packagePath": "Tasks/HelmfileInstaller/node_modules"
-        },
-        {
-            "path": "task/task.json",
-            "packagePath": "Tasks/HelmfileInstaller/task.json"
-        },
-        {
-            "path": "task/icon.png",
-            "packagePath": "Tasks/HelmfileInstaller/icon.png",
-            "addressable": true
-        }
-    ],
-    "contributions": [
-        {
-            "id": "HelmfileInstaller",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "Tasks/HelmfileInstaller"
-            }
-        }
-    ],
-    "repository": {
-        "type": "git",
-        "uri": "https://github.com/gsoft-inc/azure-pipelines-helmfile-installer"
+  "manifestVersion": 1,
+  "id": "HelmfileInstaller",
+  "name": "Helmfile Installer",
+  "version": "1.0.0",
+  "publisher": "GSoft",
+  "author": "Yohan Belval",
+  "public": true,
+  "galleryFlags": ["Public"],
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
     }
+  ],
+  "description": "Installs the helmfile command line tool on the executing host.",
+  "tags": ["Helm", "Build", "Release", "Azure Pipelines", "Visual Studio Extensions"],
+  "categories": ["Azure Pipelines"],
+  "content": {
+    "details": {
+      "path": "README.md"
+    },
+    "license": {
+      "path": "LICENSE"
+    }
+  },
+  "icons": {
+    "default": "task/icon.png"
+  },
+  "files": [
+    {
+      "path": "task/dist",
+      "packagePath": "Tasks/HelmfileInstaller/src"
+    },
+    {
+      "path": "task/node_modules",
+      "packagePath": "Tasks/HelmfileInstaller/node_modules"
+    },
+    {
+      "path": "task/task.json",
+      "packagePath": "Tasks/HelmfileInstaller/task.json"
+    },
+    {
+      "path": "task/icon.png",
+      "packagePath": "Tasks/HelmfileInstaller/icon.png",
+      "addressable": true
+    }
+  ],
+  "contributions": [
+    {
+      "id": "HelmfileInstaller",
+      "type": "ms.vss-distributed-task.task",
+      "targets": ["ms.vss-distributed-task.tasks"],
+      "properties": {
+        "name": "Tasks/HelmfileInstaller"
+      }
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "uri": "https://github.com/gsoft-inc/azure-pipelines-helmfile-installer"
+  }
 }
