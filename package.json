@@ -1,33 +1,33 @@
 {
-    "name": "helmfile-installer-pipeline-task",
-    "scripts": {
-        "postinstall": "cd task && npm install",
-        "package": "rimraf *.vsix && tsc -p task --outDir task/dist && tfx extension create --output-path PackageOutput",
-        "bump-version": "node version-bump.js",
-        "publish": "tfx extension publish --publisher gsoft",
-        "publish:dev": "tfx extension publish --publisher gsoft-dev",
-        "test": "mocha task/test"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "pretty-quick --staged"
-        }
-    },
-    "dependencies": {
-        "vss-web-extension-sdk": "^5.141.0"
-    },
-    "devDependencies": {
-        "@types/mocha": "^7.0.1",
-        "@types/node": "^10.17.14",
-        "husky": "^4.2.1",
-        "minimist": "^1.2.3",
-        "mocha": "^7.0.1",
-        "prettier": "^1.19.1",
-        "pretty-quick": "^2.0.1",
-        "rimraf": "^3.0.1",
-        "tfx-cli": "^0.7.11",
-        "ts-node": "^8.6.2",
-        "tslint": "^6.0.0",
-        "typescript": "^3.7.5"
+  "name": "helmfile-installer-pipeline-task",
+  "scripts": {
+    "postinstall": "cd task && npm install",
+    "package": "rimraf *.vsix task/dist && tsc -p task && tfx extension create --output-path PackageOutput",
+    "bump-version": "node version-bump.js",
+    "publish": "tfx extension publish --publisher gsoft",
+    "publish:dev": "tfx extension publish --publisher gsoft-dev",
+    "test": "mocha task/tests"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
     }
+  },
+  "dependencies": {
+    "vss-web-extension-sdk": "^5.141.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^10.17.14",
+    "husky": "^4.2.1",
+    "minimist": "^1.2.3",
+    "mocha": "^7.0.1",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "rimraf": "^3.0.1",
+    "tfx-cli": "^0.7.11",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
+  }
 }
