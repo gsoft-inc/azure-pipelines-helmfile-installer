@@ -1,0 +1,5 @@
+{
+  "require": ["ts-node/register"],
+  "spec": "task/tests/**/*.test.ts",
+  "timeout": 5000
+}

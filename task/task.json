@@ -4,12 +4,9 @@
   "friendlyName": "Helmfile tool installer",
   "description": "Installs helmfile command line executable on agent host.",
   "author": "GSoft Inc.",
-  "helpMarkDown": "Replace with markdown to show in help",
+  "helpMarkDown": "Installs the latest version by default.  You can also specify the version manually.",
   "category": "Utility",
-  "visibility": [
-    "Build",
-    "Release"
-  ],
+  "visibility": ["Build", "Release"],
   "demands": [],
   "version": {
     "Major": "0",

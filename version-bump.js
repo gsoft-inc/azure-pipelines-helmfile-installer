@@ -84,8 +84,8 @@ const run = async args => {
   console.log(`Updating extension information for ${args['release-type']}`);
 
   const settings = {
-    id: 'lighthouse-vsts',
-    name: 'Lighthouse',
+    id: 'HelmfileInstaller',
+    name: 'Helmfile Installer',
     publisher: 'GSoft',
     version: { major: 1, minor: 0, patch: 0 },
     galleryFlags: ['Public'],
@@ -133,7 +133,7 @@ const run = async args => {
     content.public = settings.public;
   });
 
-  const taskJsonPath = path.resolve(__dirname, 'task/src/task.json');
+  const taskJsonPath = path.resolve(__dirname, 'task/task.json');
   await updateJsonContent(taskJsonPath, content => {
     content.version = {
       Major: settings.version.major,
