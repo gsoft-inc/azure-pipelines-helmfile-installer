@@ -1,0 +1,46 @@
+{
+    "manifestVersion": 1,
+    "id": "HelmfileInstaller",
+    "name": "Helmfile Installer",
+    "version": "0.2.0",
+    "publisher": "yohandev",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "description": "Installs the helmfile command line tool on the executing host.",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "task/dist/icon.png"
+    },
+    "files": [
+        {
+            "path": "task/dist/src"
+        },
+        {
+            "path": "task/dist/node_modules"
+        },
+        {
+            "path": "task/dist/task.json"
+        },
+        {
+            "path": "task/dist/icon.png",
+            "addressable": true
+        }
+    ],
+    "contributions": [
+        {
+            "id": "HelmfileInstaller",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "task/dist"
+            }
+        }
+    ]
+}
