@@ -17,7 +17,7 @@
   "categories": ["Azure Pipelines"],
   "content": {
     "details": {
-      "path": "overview.md"
+      "path": "docs/overview.md"
     },
     "license": {
       "path": "LICENSE"
