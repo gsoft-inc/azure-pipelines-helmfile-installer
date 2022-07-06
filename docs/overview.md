@@ -1,6 +1,6 @@
 # Helmfile installer for Azure Pipelines
 
-This is an [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=GSoft.HelmfileInstaller) that allows you to install the [helmfile cli tool](https://github.com/roboll/helmfile).
+This is an [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=GSoft.HelmfileInstaller) that allows you to install the [helmfile cli tool](https://github.com/helmfile/helmfile).
 
 ## Installation
 

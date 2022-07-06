@@ -39,13 +39,13 @@ function getHelmfileDownloadURL(version: string): string {
     switch (os.type()) {
         case "Linux":
             const architecture = getSupportedLinuxArchitecture();
-            return util.format("https://github.com/roboll/helmfile/releases/download/%s/helmfile_linux_%s", version, architecture);
+            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_linux_%s", version, architecture);
 
         case "Darwin":
-            return util.format("https://github.com/roboll/helmfile/releases/download/%s/helmfile_darwin_amd64", version);
+            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_darwin_amd64", version);
 
         case "Windows_NT":
-            return util.format("hhttps://github.com/roboll/helmfile/releases/download/%s/helmfile_windows_amd64.exe", version);
+            return util.format("hhttps://github.com/helmfile/helmfile/releases/download/%s/helmfile_windows_amd64.exe", version);
 
         default:
             throw Error("Unknown OS type");
