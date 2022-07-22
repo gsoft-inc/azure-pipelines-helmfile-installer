@@ -4,3 +4,4 @@ node_modules
 task/**/*.js
 .taskkey
 .DS_Store
+.idea
