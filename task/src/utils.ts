@@ -8,7 +8,7 @@ import * as tl from "azure-pipelines-task-lib";
 import * as semver from "semver";
 
 const helmfileToolName = "helmfile";
-const helmfileAllReleasesUrl = "https://api.github.com/repos/roboll/helmfile/releases";
+const helmfileAllReleasesUrl = "https://api.github.com/repos/helmfile/helmfile/releases";
 const stableHelmfileVersion = "v0.139.9";
 
 function getExecutableExtension(): string {
