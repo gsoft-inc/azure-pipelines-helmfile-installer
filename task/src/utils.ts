@@ -46,7 +46,7 @@ function getHelmfileDownloadURL(version: string): string {
             return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_%s_darwin_amd64.tar.gz", version, versionWithoutPrefix);
 
         case "Windows_NT":
-            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_%s_windows_amd64.exe.tar.gz", version, versionWithoutPrefix);
+            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_%s_windows_amd64.tar.gz", version, versionWithoutPrefix);
 
         default:
             throw Error("Unknown OS type");
