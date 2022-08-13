@@ -9,7 +9,7 @@ import * as semver from "semver";
 
 const helmfileToolName = "helmfile";
 const helmfileAllReleasesUrl = "https://api.github.com/repos/helmfile/helmfile/releases";
-const stableHelmfileVersion = "v0.139.9";
+const stableHelmfileVersion = "v0.145.2";
 
 function getExecutableExtension(): string {
     if (os.type().match(/^Win/)) {
