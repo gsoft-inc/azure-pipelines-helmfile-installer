@@ -36,16 +36,17 @@ function findHelmfile(rootFolder: string) {
 }
 
 function getHelmfileDownloadURL(version: string): string {
+    const versionWithoutPrefix = version.replace(/^v/, "");
     switch (os.type()) {
         case "Linux":
             const architecture = getSupportedLinuxArchitecture();
-            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_linux_%s", version, architecture);
+            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_%s_linux_%s.tar.gz", version, versionWithoutPrefix, architecture);
 
         case "Darwin":
-            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_darwin_amd64", version);
+            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_%s_darwin_amd64.tar.gz", version, versionWithoutPrefix);
 
         case "Windows_NT":
-            return util.format("hhttps://github.com/helmfile/helmfile/releases/download/%s/helmfile_windows_amd64.exe", version);
+            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_%s_windows_amd64.tar.gz", version, versionWithoutPrefix);
 
         default:
             throw Error("Unknown OS type");
