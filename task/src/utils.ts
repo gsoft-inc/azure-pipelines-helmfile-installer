@@ -8,8 +8,8 @@ import * as tl from "azure-pipelines-task-lib";
 import * as semver from "semver";
 
 const helmfileToolName = "helmfile";
-const helmfileAllReleasesUrl = "https://api.github.com/repos/helmfile/helmfile/releases";
-const stableHelmfileVersion = "v0.145.2";
+const helmfileAllReleasesUrl = "https://api.github.com/repos/roboll/helmfile/releases";
+const stableHelmfileVersion = "v0.139.9";
 
 function getExecutableExtension(): string {
     if (os.type().match(/^Win/)) {
@@ -36,17 +36,16 @@ function findHelmfile(rootFolder: string) {
 }
 
 function getHelmfileDownloadURL(version: string): string {
-    const versionWithoutPrefix = version.replace(/^v/, "");
     switch (os.type()) {
         case "Linux":
             const architecture = getSupportedLinuxArchitecture();
-            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_%s_linux_%s.tar.gz", version, versionWithoutPrefix, architecture);
+            return util.format("https://github.com/roboll/helmfile/releases/download/%s/helmfile_linux_%s", version, architecture);
 
         case "Darwin":
-            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_%s_darwin_amd64.tar.gz", version, versionWithoutPrefix);
+            return util.format("https://github.com/roboll/helmfile/releases/download/%s/helmfile_darwin_amd64", version);
 
         case "Windows_NT":
-            return util.format("https://github.com/helmfile/helmfile/releases/download/%s/helmfile_%s_windows_amd64.tar.gz", version, versionWithoutPrefix);
+            return util.format("https://github.com/roboll/helmfile/releases/download/%s/helmfile_windows_amd64.exe", version);
 
         default:
             throw Error("Unknown OS type");

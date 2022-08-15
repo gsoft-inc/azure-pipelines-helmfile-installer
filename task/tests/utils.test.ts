@@ -42,7 +42,7 @@ describe('helmfile util', () => {
       expect(semver.patch(version)).to.be.an('number');
     });
     it('should be able return semver when passing vx.x.x', async () => {
-      inputStub.withArgs('helmfileVersionToInstall').returns('v0.145.2');
+      inputStub.withArgs('helmfileVersionToInstall').returns('v0.139.9');
       const version = await utils.getHelmfileVersion();
       expect(version).to.not.be.empty;
       expect(semver.major(version)).to.be.an('number');
@@ -64,7 +64,7 @@ describe('helmfile util', () => {
       expect(fs.existsSync(executable)).true;
     });
     it('should be able to download specific version', async () => {
-      const executable = await utils.downloadHelmfile('v0.145.0');
+      const executable = await utils.downloadHelmfile('v0.139.8');
       expect(executable).to.not.be.empty;
       expect(fs.existsSync(executable)).true;
     });
