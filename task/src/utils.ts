@@ -45,7 +45,7 @@ function getHelmfileDownloadURL(version: string): string {
             return util.format("https://github.com/roboll/helmfile/releases/download/%s/helmfile_darwin_amd64", version);
 
         case "Windows_NT":
-            return util.format("hhttps://github.com/roboll/helmfile/releases/download/%s/helmfile_windows_amd64.exe", version);
+            return util.format("https://github.com/roboll/helmfile/releases/download/%s/helmfile_windows_amd64.exe", version);
 
         default:
             throw Error("Unknown OS type");
