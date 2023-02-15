@@ -21,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: Update extension information
-        run: npm run bump-version -- --token ${{ secrets.marketplace_access_token }} --release-type hotfix
+        run: npm run bump-version -- --token ${{ secrets.vs_marketplace_access_token }} --release-type hotfix
 
       - name: Package extension
         run: npm run package
@@ -58,4 +58,4 @@ jobs:
 
       - name: Publish to VS Marketplace
         run: |
-          find ./package -name '*.vsix' -exec npm run publish -- -t ${{ secrets.marketplace_access_token }} --vsix {} \;
+          find ./package -name '*.vsix' -exec npm run publish -- -t ${{ secrets.vs_marketplace_access_token }} --vsix {} \;
